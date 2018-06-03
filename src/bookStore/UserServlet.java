@@ -15,15 +15,23 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import bookStore.UserEnity;
+import Entity.UserEnity;
+import Service.HibernateUtil;
+import Service.JsonReader;
+import Service.UserState;
 import net.sf.json.JSONObject;
-import bookStore.HibernateUtil;
 
 /**
  * Servlet implementation class UserServlet
  */
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
+	private UserEnity userEnity;
+	
+	public void setUserEnity(UserEnity userEnity) {
+		this.userEnity = userEnity;
+	}
+
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -191,7 +199,7 @@ public class UserServlet extends HttpServlet {
 	
 	
 	/*µÇÂ¼Æ¥Åäº¯Êý*/
-	public static String login(JSONObject json) {
+	public String login(JSONObject json) {
 		System.out.println("login");
 		
 		String result = null;
@@ -206,13 +214,14 @@ public class UserServlet extends HttpServlet {
 		    String loginPwd = json.getString("password");
 		    
 		    System.out.println(loginPwd);
-		    UserEnity customer=(UserEnity)session.get(UserEnity.class, loginId);
+		    //UserEnity customer=(UserEnity)session.get(UserEnity.class, loginId);
+		    this.userEnity = (UserEnity)session.get(UserEnity.class, loginId);
 		    
-		    if(customer == null) {
+		    if(this.userEnity == null) {
 		    	System.out.println("no exist!");
 		    	result = "wrongID";
 		    }
-		    else if(customer.getPassword().equals(loginPwd)) {
+		    else if(this.userEnity.getPassword().equals(loginPwd)) {
 		    	System.out.println("right password!");
 		    	result = "rightPwd";
 		    	UserState.userID = loginId;

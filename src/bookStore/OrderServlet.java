@@ -16,6 +16,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import Entity.Order_item;
+import Entity.User_order;
+import Service.HibernateUtil;
+import Service.JsonReader;
+import Service.UserState;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 

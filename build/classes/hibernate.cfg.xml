@@ -12,9 +12,9 @@
         
         <property name="hibernate.current_session_context_class">thread</property>
         
-        <mapping resource="bookStore/UserEnity.hbm.xml"/>
-        <mapping resource="bookStore/BookEnity.hbm.xml"/>
-        <mapping resource="bookStore/User_order.hbm.xml"/>
-        <mapping resource="bookStore/Order_item.hbm.xml"/>
+        <mapping resource="Entity/UserEnity.hbm.xml"/>
+        <mapping resource="Entity/BookEnity.hbm.xml"/>
+        <mapping resource="Entity/User_order.hbm.xml"/>
+        <mapping resource="Entity/Order_item.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
